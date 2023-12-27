@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, white, lightgrey);
+            margin: 0;
+        }
+        #topbar {
+            display: flex;
+            justify-content: space-around;
+            
+            border-width: 10px; /*doesn't work so I kept padding*/
+            border-image: linear-gradient(to bottom right, black 0%, #001900 25%, #003200 50%, #004b00 75%, #006400 100%);
+            position: sticky; 
+            top: 0;
+            z-index: 100; /*ensures the navbar appears on top of other content */
+        }
+
+        #topbar button {
+            width: 20%; 
+            font-size: 150%;
+        }
+        #instagram, #timer, #footer {
+            text-align: center;
+            padding: 20px;
+        }
+        #events {
+            font-size: 24px; 
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            color: darkgrey;
+            background: linear-gradient(to top right, black 0%, #001900 25%, #003200 50%, #004b00 75%, #006400 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 25vh;
+        }
+        .header h1 {
+            font-family: '1955', sans-serif;
+            font-size: 80px;
+            margin: 0;
+            text-shadow: 0 0 10px grey, 0 0 20px grey, 0 0 30px grey, 0 0 40px grey, 0 0 50px grey, 0 0 60px grey; /* Add initial glow */
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 20px grey, 0 0 30px grey, 0 0 40px grey, 0 0 50px grey, 0 0 60px grey;
+            }
+            to {
+                text-shadow: 0 0 30px green, 0 0 40px green, 0 0 50px green, 0 0 60px green, 0 0 70px green, 0 0 80px green; /* Increase glow */
+            }
+        }
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+        
+        .footer-links img {
+            width: 75px;
+            padding-inline: 10px;
+            border-radius: 33%;
+        }
+
+        .subpage {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .c-button {
+            color: #000;
+            font-weight: 700;
+            font-size: 4vw;
+            text-decoration: none;
+            padding: 0.9em 1.6em;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            z-index: 1;
+        }
+
+        .c-button--gooey {
+            color: #006400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 4px solid #006400;
+            border-radius: 0;
+            position: relative;
+            transition: all 700ms ease;
+        }
+        .selected {
+            background-color: #006400;
+            color: white;
+        }
+
+        .c-button--gooey .c-button__blobs {
+            height: 100%;
+            filter: url(#goo);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: -3px;
+            right: -1px;
+            z-index: -1;
+        }
+
+        .c-button--gooey .c-button__blobs div {
+            background-color: #006400; /* Dark green color */
+            width: 34%;
+            height: 100%;
+            border-radius: 100%;
+            position: absolute;
+            transform: scale(1.4) translateY(125%) translateZ(0);
+            transition: all 700ms ease;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(1) {
+            left: -5%;
+            transition-delay: 60ms;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(2) {
+            left: 30%;
+            transition-delay: 0ms;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(3) {
+            left: 66%;
+            transition-delay: 75ms;
+        }
+
+        .c-button--gooey:hover {
+            color: #fff;
+        }
+
+        .c-button--gooey:hover .c-button__blobs div {
+            transform: scale(1.4) translateY(0) translateZ(0);
+        }
+        #image-section {
+            width: 100%;
+            height: 75vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #image {
+            width: auto;
+            height: 100%;
+            object-fit: cover;
+        }
+        #text-section, #timeline-section {
+            width: 100%;
+            height: 100px;
+            /*border: 1px solid black;*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #timeline {
+            position: relative;
+            margin-bottom: 200px;
+        }
+        #timeline::before {
+            content: '';
+            position: absolute;
+            top: calc(50% + 15px);
+            left: 0;
+            width: 100%;
+            border-top: 5px solid black;
+        }
+        .fa {
+            cursor: pointer;
+            font-size: 48px;
+        }
+        .event {
+            position: absolute;
+            top: 0;
+            text-align: center;
+        }
+        #startYear, #currentYear{
+            font-weight: bold;
+        }
+        #startYear::before, #currentYear::after {
+            content: "|";
+            position: absolute;
+            width: 2px;
+            height: 15px;
+            background: black;
+            margin-top: 20px;
+        }
+        .image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+        }
+        .no-bullet {
+            list-style-type: none;
+        }
+        
+        .deacthlon-header {
+                font-size: 24px; /* Larger font size */
+                font-weight: bold; /* Make the text bold */
+                color: #333; /* Dark grey color for better readability */
+                text-align: center; /* Center the text */
+                padding: 20px; /* Add some padding around the text */
+                margin-bottom: 30px; /* Add some space below the header */
+                border-bottom: 2px solid #666; /* A subtle bottom border */
+                background-color: #f8f8f8; /* A light background color */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* A soft shadow to lift the header */
+                border-radius: 5px; /* Rounded corners */
+            }
+            .deacthlon {
+                display: flex;
+            }
+            .deacthlon-left-half {
+                width: 50%;
+            }
+            .deacthlon-right-half {
+                width: 50%;
+                position: relative;
+            }
+            .deacthlon-event-row {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            .deacthlon-event-title {
+                flex: 2; 
+            }
+            .deacthlon-event-score {
+                width: 25%;
+            }
+            .deacthlon-event-units {
+                flex: 1;
+                margin-left: 10px;
+            }
+            .deacthlon-event-points {
+                flex: 1; 
+                text-align: right;
+            }
+            .deacthlon-total-score {
+                align-items: center;
+                margin-top: 20px;
+                margin-left: '100%';
+                font-weight: bold;
+            }
+            .deacthlon-line {
+                position: absolute;
+                height: 2px;
+                left: 0;
+            }
+            .deacthlon-input {
+            max-width: 100px;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
+            outline: none;
+            color: dimgray;
+            }
+
+            .deacthlon-input:invalid {
+            animation: justshake 0.3s forwards;
+            color: red;
+            }
+
+            @keyframes justshake {
+            25% {
+                transform: translateX(5px);
+            }
+
+            50% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+
+            100% {
+                transform: translateX-(5px);
+            }
+            }
+            #deacthlon-visual-container {
+            position: relative;
+            width: 100%; /* Full width of the container */
+            height: 500px; /* Adjust the height as needed */
+            overflow: hidden; /* Prevents content from spilling outside the container */
+            }
+
+            .carnivore-left-half {
+                width: 50%;
+                background-image: url('images/carnivore.jpg');
+                background-size: cover;
+            }
+            .carnivore-right-half {
+                width: 50%;
+                padding: 10px;
+            }
+            p {
+                font-family: 'Arial', sans-serif; /* Change the font to Arial. */
+                font-size: 16px; /* Set the font size to 16 pixels. */
+                line-height: 1.6; /* Set the space between lines. */
+                color: #333; /* Set the text color. */
+                margin-bottom: 20px; /* Add space below each paragraph. */
+                text-align: justify; /* Align the text to both left and right margins. */
+            }
+
+            .contact-input {
+            padding: 24px;
+            border: none;
+            border-radius: 4px;
+            box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.2);
+            outline: none;
+            color: dimgray;
+            margin-bottom: 25px;
+        }
+        .container {
+                display: flex;
+                flex-direction: column;
+        }
+        .row-container{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .contact-input.short {
+            max-width: 200px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .contact-input.long {
+            width: 400px;
+        }
+
+        .contact-input:invalid:focus:not(:placeholder-shown) {
+            animation: justshake 0.3s forwards;
+            color: red;
+        }
+
+        @keyframes justshake {
+            25% {
+                transform: translateX(5px);
+            }
+
+            50% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+
+            100% {
+                transform: translateX(-5px);
+            }
+        }
+
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #nameRow {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .contact-btn:link,
+        .contact-btn:visited {
+            text-transform: uppercase;
+            text-decoration: none;
+            color: rgb(27, 27, 27);
+            padding: 10px 30px;
+            border: 1px solid;
+            border-radius: 1000px;
+            display: inline-block;
+            transition: all .2s;
+            position: relative;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(27, 27, 27, .5);
+        }
+
+        .contact-btn:active {
+            transform: translateY(-3px);
+        }
+
+        .contact-btn::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+            border-radius: 100px;
+            top: 0;
+            left: 0;
+            position: absolute;
+            z-index: -1;
+            transition: all .3s;
+        }
+
+        .contact-btn:hover::after {
+            background-color: rgb(32, 128, 64);
+            transform: scaleX(1.4) scaleY(1.5);
+            opacity: 0;
+        }
+        .autoExpand {
+            overflow-y: hidden;
+            resize: none;
+        }
+
+        .statistics-section {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 20px; 
+        }
+
+        .track-event {
+        flex: 0 0 50%;
+        margin-bottom: 20px; 
+        }
+    
+    .highScore-animate {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <div class="header"><h1>RYAN TALBOT</h1></div>
+    <div id="topbar">
+        <button class="c-button c-button--gooey selected" onclick="showSubpage('About')">About
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+        <button class="c-button c-button--gooey" onclick="showSubpage('Decathlon')">Decathlon Overview
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+        <button class="c-button c-button--gooey" onclick="showSubpage('Carnivore')">Carnivore Diet
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+        <button class="c-button c-button--gooey" onclick="showSubpage('Upcoming Events')">Upcoming Events
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+        <button class="c-button c-button--gooey" onclick="showSubpage('Contact')">Contact
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+    </div>
+
+    <div id="About" class="subpage active">
+        <div class="image-container">
+            <img src="images\Team_USA_pics\flag_flex.jpg" alt="flag_flex.jpg">
+        </div>
+    
+        <div id="timer">
+            <h3 id="session-length">You've been here for 0 seconds</h3>
+            <ul id="events">
+                <!-- Decathlon events will be added here -->
+            </ul>
+        </div>
+
+        <div id="about-text">
+            <h1>Background</h1>
+            <p>Ryan Talbot is an American track and field athlete who competes in the Decathlon. Born on October 7, 2000, he hails from Alto, Michigan, and attended Forest Hills Central in Grand Rapids, Michigan. His mother, Sally Talbot (née Clark), was a Michigan State track heptathlete.</p>
+
+            <p>In May 2022, Talbot won the Big Ten Conference decathlon with a Michigan State University school record. He was selected to compete for America at the 2023 Pan American Games. He won the bronze medal in the decathlon at the event in Santiago, Chile, in November 2023. His personal best in Decathlon is 8064, which he achieved in Minneapolis in 2022.</p>
+
+            <p>Talbot's diet is unique. He follows a carnivore diet, consuming only meat, eggs, and butter. For daily eating habits, he usually eats six eggs and half a pound of ground beef for breakfast, lunch is three half-pound burgers with a little bit of butter, and dinner is a steak and six eggs. This means Talbot consumes roughly three pounds of meat and a dozen eggs daily. He sources his food from local farmers and buys grass-fed ground beef in large quantities.</p>
+
+            <p>Talbot's journey in the carnivore diet originated two years ago during his junior year when he felt he was not performing to his standards. He decided the change in his diet will help him reach a higher level of success. He believed that he needed to eat carbs all the time. However, after going carnivore, he started feeling really good. His hamstring injuries completely went away, and recovery was way faster than normal. He competed the next day and won the Jim Click Shootout decathlon, went to Big Ten’s, and won that year as well, all while not eating carbohydrates.</p>
+
+            <p>According to his World Athletics profile, his current world ranking positions are as follows:</p>
+            <ul>
+            <li>Men's Decathlon: 85</li>
+            <li>Men's Discus Throw: 440</li>
+            <li>Men's Shot Put: 750</li>
+            <li>Men's 110mH: 841</li>
+            <li>Men's 400m: 1066</li>
+            <li>Men's 100m: 2339</li>
+            <li>Men's Overall Ranking: 2906</li>
+            </ul>
+
+            <p>His highest world ranking positions are:</p>
+            <ul>
+            <li>Men's Decathlon: 67</li>
+            <li>Men's Pole Vault: 290</li>
+            <li>Men's Discus Throw: 440</li>
+            <li>Men's Shot Put: 750</li>
+            <li>Men's 110mH: 824</li>
+            <li>Men's 400m: 1066</li>
+            <li>Men's 100m: 1756</li>
+            <li>Men's Overall Ranking: 2157</li>
+            </ul>
+
+            <p>His all-time personal top competitions are:</p>
+            <ul>
+            <li>Big Ten Ch., University of Minnesota T&F Stadium, Minneapolis, MN USA: 8064 Decathlon</li>
+            <li>Big Ten Conference Outdoor Track & Field Championships, Billy Hayes T& F Complex, Bloomington, IN USA: 7786 Decathlon</li>
+            <li>Pan American Games, Santiago de Chile CHI: 7742 Decathlon</li>
+            <li>Jim Click Shootout & Multis, Univ. of Arizona Roy P. Drachman Stadium, Tucson, AZ USA: 7677 Decathlon</li>
+            <li>USA Championships, Hayward Field, Eugene, OR USA: 7532 Decathlon</li>
+            <li>NCAA Division I Outdoor Championships, Mike A. Myers Stadium, Austin, TX USA: 7488 Decathlon</li>
+            </ul>
+
+            <p>For more detailed information, you can visit his <a href="https://www.worldathletics.org/athletes/united-states/ryan-talbot-14889963">Wikipedia page</a> or his <a href="https://www.worldathletics.org/athletes/united-states/ryan-talbot-14889963">World Athletics profile</a>.</p>
+        </div>
+    
+        <div id="image-section">
+            <img id="image" src="" alt="Image description">
+        </div>
+        <div id="text-section">
+            <p id="text"></p>
+        </div>
+        <div>
+            <h1>Timeline of Ryan's career:</h1>
+            <p>(click for more details)</p>
+            <div id="yearDiv" style="display: flex; justify-content: space-between;">
+                <span id="startYear">2015</span>
+                <span id="currentYear"></span>
+            </div>
+        </div>
+        <div id="timeline">
+            <!-- Timeline items will be added here by JavaScript -->
+        </div>
+    </div>
+    <div id="Contact" class="subpage">
+        <form id="contactForm">
+            <div id="nameRow">
+                <input class="contact-input short" type="text" id="firstName" placeholder="First Name" pattern="[^0-9]*" required>
+                <input class="contact-input short" type="text" id="lastName" placeholder="Last Name" pattern="[^0-9]*" required>
+            </div>
+            <input class="contact-input long" type="email" id="email" placeholder="Email" required>
+            <textarea class="contact-input long autoExpand" id="message" placeholder="Message" required></textarea>
+            <a href="#" class="contact-btn">Submit</a>
+        </form>
+    </div>
+    <div id="Decathlon" class="subpage">
+        <div class="container">
+            <h1>The Decathlon: A Test of Athletic Prowess</h1>
+            
+            <div id="origin">
+                <h2>Origin of the Decathlon</h2>
+                <p>The decathlon developed from the ancient pentathlon competitions held at the ancient Greek Olympics. Pentathlons involved five disciplines – long jump, discus throw, javelin throw, sprint, and a wrestling match. Introduced in Olympia during 708 BC, this competition was extremely popular for many centuries. The modern decathlon first appeared at the 1912 Games. The name "decathlon" was formed, in analogy to the word "pentathlon", from Greek δέκα (déka, meaning "ten") and ἄθλος (áthlos, or ἄθλον, áthlon, meaning "contest" or "prize").</p>
+            </div>
+    
+            <div id="history">
+                <h2>Recent History of the Decathlon</h2>
+                <p>The current official decathlon world record holder is Frenchman Kevin Mayer, who scored a total of 9,126 points at the 2018 Décastar in France.</p>
+            </div>
+    
+            <div id="description">
+                <h2>Description of the Decathlon Events</h2>
+                <p>In modern athletics, the ten events are:</p>
+                <ul>
+                    <li>100 metres: This is a sprint event. Athletes set up in starting blocks and sprint 100 meters to the finish line, while staying in their assigned lane.</li>
+                    <li>Long jump: This is a horizontal jump for distance. It's one of the oldest athletic contests, dating back to the ancient Greek Olympics.</li>
+                    <li>Shot put: Athletes throw a heavy spherical object as far as possible.</li>
+                    <li>High jump: This is a track and field event in which competitors must jump unaided over a horizontal bar placed at measured heights without dislodging it.</li>
+                    <li>400 metres: This is a sprint around the track in the stadium. One lap around the track covers the distance.</li>
+                    <li>110 metres hurdles: This is a sprint race in which each athlete must clear ten hurdles that are evenly spaced along a straight course.</li>
+                    <li>Discus throw: Athletes throw a heavy disc—called a discus—in an attempt to mark a farther distance than their competitors.</li>
+                    <li>Pole vault: This is a track and field event in which a person uses a long flexible pole as an aid to jump over a bar.</li>
+                    <li>Javelin throw: Athletes throw a spear-like object made of metal, fiberglass, or carbon fiber, with men's and women's competitions being held.</li>
+                    <li>1500 metres: This is a premier middle-distance track event in athletics. The distance has been contested at the Summer Olympics since 1896 for men and since 1972 for women.</li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h1>Ryan's Personal Records</h1>
+                <p>These are the event scores from Ryan's current best decathlon performance:</p>
+            </div>
+            <div class="statistics-section">
+                <!-- The track-event divs will be created here by your JavaScript -->
+            </div>
+    
+            <div id="split">
+                <h2>Decathlon Events Split Over Two Days</h2>
+                <p>The vast majority of international and top-level men's decathlons are divided into a two-day competition. On the first day, athletes compete in a 100-meter dash, long jump, shot put, high jump, and 400-meter run. The second day includes 110-meter hurdles, discus throw, pole vault, javelin throw, and a 1,500-meter run.</p>
+            </div>
+        </div>
+        <div class = "row-container">
+            <div class="deacthlon-left-half" id="deacthlon-events-container">
+                <div class="deacthlon-header">
+                    Calculate your scores
+                </div>
+                <!-- JavaScript will populate this container with event rows -->
+            </div>
+            <!--<div class="deacthlon-right-half" id="deacthlon-visual-container">
+                <div class="deacthlon-header">
+                    Compare <span style="color: red;">your score</span> to <span style="color: green;">Ryan's best</span> and the <span style="color: blue;">world record</span>
+                </div>
+                 JavaScript will populate this container with lines 
+            </div>-->
+        </div>
+            <!-- Total score row -->
+        <div class="decathlon-total-score">
+            Total Score: <span id="decathlon-total-score">0</span>
+        </div>
+        </div>
+        <div id="Carnivore" class="subpage">
+            <div class="row-container">
+                <div class="carnivore-left-half"></div>
+                <div class="carnivore-right-half">
+                    <p>Since his Junior year of college, Ryan has followed a strict carnivore diet consisting of almost exclusively meat and eggs.</p>
+
+                    <p>Here is one example of a daily diet for Ryan:
+                    <ul>
+                    <li>Breakfast: Six eggs and half a pound of ground beef.</li>
+                    <li>Lunch: Three half-pound burgers with a little bit of butter.</li>
+                    <li>Dinner: A steak and six eggs.</li>
+                    </ul>
+                    </p>
+
+                    <p>This means that he consumes roughly three pounds of meat and a dozen eggs daily. He sources his food from local farmers and sometimes purchases a whole cow at once, which is about 600 pounds of meat.</p>
+
+                    <p>Ryan's journey on the carnivore diet started when he felt he was not athletically performing to his standards. He decided to change his diet to help him reach a higher level of success. He believes that his diet has helped him recover faster from injuries and improve his performance. For instance, he won the Jim Click Shootout decathlon and the Big Ten Championship while following the carnivore diet.</p>
+
+                    <p>As you can see Ryan is exceptionally enthusiastic about his diet and believes in the results of it based on his personal success.</p>
+
+                    <p>Here are some quotes from Ryan regarding his diet:</p>
+                    <blockquote>
+                    <p>"I feel like I'm recovering faster from workouts."</p>
+                    <p>"I've noticed a significant improvement in my performance since I started this diet."</p>
+                    <p>"I believe this diet has helped me reach a higher level of success."</p>
+                    </blockquote>
+
+                </div>
+            </div>
+        </div>
+    <div id="Upcoming Events" class="subpage" style="justify-content: center;">
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%2333B679&ctz=America%2FNew_York&mode=AGENDA&showTz=1&showCalendars=0&showTabs=0&showPrint=0&showNav=0&showTitle=1&title=Ryan's%20Upcoming%20Events&src=Zm1nbzRxZzAwNWtkY3VpbTMyZjg1NGo2cWRqYTYxZjdAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043" style="border:solid 1px #777" width="90%" height="500px" frameborder="0" scrolling="no"></iframe>
+    </div>
+
+    <div id="footer">
+        <h3>Follow along with Ryan's journey</h3>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/_ryan_talbot_/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png" alt="Instagram"></a>
+            <a href="https://msuspartans.com/sports/track-and-field/roster/ryan-talbot/13551"><img src = "images\msu_logo.jpg" alt="MSU"></a>
+            <a href="https://worldathletics.org/athletes/united-states/ryan-talbot-14970717"><img src = "images\World_Athletics_Logo.jpg" alt="World Athletics"></a>
+        </div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+                <feBlend in="SourceGraphic" in2="goo"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

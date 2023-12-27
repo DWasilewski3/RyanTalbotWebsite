@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar Events</title>
+<style>
+  /* Add your CSS styling here */
+  .event {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+<h1>Upcoming Events</h1>
+<div id="events"></div>
+
+<script>
+// This function fetches the iCal data and parses it to display events
+function fetchCalendarEvents() {
+  const icalUrl = 'https://www.calendarlabs.com/templates/ical/US-Holidays.ics'; // Replace with your iCal URL
+  fetch(icalUrl)
+    .then(response => response.text())
+    .then(data => {
+      const events = parseIcalData(data);
+      displayEvents(events);
+    })
+    .catch(error => console.error('Error fetching calendar data:', error));
+}
+
+// This function parses the iCal data and extracts events
+function parseIcalData(icalData) {
+  // Implement iCal parsing logic here
+  // For simplicity, we'll return an array of example events
+  return [
+    { summary: 'New Year\'s Day', date: '2023-01-01' },
+    { summary: 'Independence Day', date: '2023-07-04' }
+    // Add more events as needed
+  ];
+}
+
+// This function displays the events on the web page
+function displayEvents(events) {
+  const eventsContainer = document.getElementById('events');
+  events.forEach(event => {
+    const eventElement = document.createElement('div');
+    eventElement.classList.add('event');
+    eventElement.innerHTML = `<strong>${event.summary}</strong><br>${event.date}`;
+    eventsContainer.appendChild(eventElement);
+  });
+}
+
+// Call the function to fetch and display events
+fetchCalendarEvents();
+</script>
+</body>
+</html>

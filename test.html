@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+</head>
+<body>
+    <div class="header"><h1>RYAN TALBOT</h1></div>
+    <div id="topbar">
+        <button class="c-button c-button--gooey selected" onclick="showSubpage('About')">About
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+        <button class="c-button c-button--gooey" onclick="showSubpage('Decathlon')">Decathlon Overview
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+        <button class="c-button c-button--gooey" onclick="showSubpage('Carnivore')">Carnivore Diet
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+        <button class="c-button c-button--gooey" onclick="showSubpage('Upcoming Events')">Upcoming Events
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+        <button class="c-button c-button--gooey" onclick="showSubpage('Contact')">Contact
+            <div class="c-button__blobs">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </button>
+    </div>
+
+    <div id="About" class="subpage active">
+        <div class="image-container">
+            <img src="images\Team_USA_pics\flag_flex.jpg" alt="flag_flex.jpg">
+        </div>
+    
+        <div id="timer">
+            <h3 id="session-length">You've been here for 0 seconds</h3>
+            <ul id="events">
+                <!-- Decathlon events will be added here -->
+            </ul>
+        </div>
+
+        <div id="about-text" class="side-pads">
+            <h1>Background</h1>
+            <p>Ryan Talbot is an American track and field athlete who competes in the Decathlon. Born on October 7, 2000, he hails from Alto, Michigan, and attended Forest Hills Central in Grand Rapids, Michigan. His mother, Sally Talbot (née Clark), was a Michigan State track heptathlete.</p>
+
+            <p>In May 2022, Talbot won the Big Ten Conference decathlon with a Michigan State University school record. He was selected to compete for America at the 2023 Pan American Games. He won the bronze medal in the decathlon at the event in Santiago, Chile, in November 2023. His personal best in Decathlon is 8064, which he achieved in Minneapolis in 2022.</p>
+
+            <p>Talbot's diet is unique. He follows a carnivore diet, consuming only meat, eggs, and butter. For daily eating habits, he usually eats six eggs and half a pound of ground beef for breakfast, lunch is three half-pound burgers with a little bit of butter, and dinner is a steak and six eggs. This means Talbot consumes roughly three pounds of meat and a dozen eggs daily. He sources his food from local farmers and buys grass-fed ground beef in large quantities.</p>
+
+            <p>Talbot's journey in the carnivore diet originated two years ago during his junior year when he felt he was not performing to his standards. He decided the change in his diet will help him reach a higher level of success. He believed that he needed to eat carbs all the time. However, after going carnivore, he started feeling really good. His hamstring injuries completely went away, and recovery was way faster than normal. He competed the next day and won the Jim Click Shootout decathlon, went to Big Ten’s, and won that year as well, all while not eating carbohydrates.</p>
+
+            <p>According to his World Athletics profile, his current world ranking positions are as follows:</p>
+            <ul>
+            <li>Men's Decathlon: 85</li>
+            <li>Men's Discus Throw: 440</li>
+            <li>Men's Shot Put: 750</li>
+            <li>Men's 110mH: 841</li>
+            <li>Men's 400m: 1066</li>
+            <li>Men's 100m: 2339</li>
+            <li>Men's Overall Ranking: 2906</li>
+            </ul>
+
+            <p>His highest world ranking positions are:</p>
+            <ul>
+            <li>Men's Decathlon: 67</li>
+            <li>Men's Pole Vault: 290</li>
+            <li>Men's Discus Throw: 440</li>
+            <li>Men's Shot Put: 750</li>
+            <li>Men's 110mH: 824</li>
+            <li>Men's 400m: 1066</li>
+            <li>Men's 100m: 1756</li>
+            <li>Men's Overall Ranking: 2157</li>
+            </ul>
+
+            <p>His all-time personal top competitions are:</p>
+            <ul>
+            <li>Big Ten Ch., University of Minnesota T&F Stadium, Minneapolis, MN USA: 8064 Decathlon</li>
+            <li>Big Ten Conference Outdoor Track & Field Championships, Billy Hayes T& F Complex, Bloomington, IN USA: 7786 Decathlon</li>
+            <li>Pan American Games, Santiago de Chile CHI: 7742 Decathlon</li>
+            <li>Jim Click Shootout & Multis, Univ. of Arizona Roy P. Drachman Stadium, Tucson, AZ USA: 7677 Decathlon</li>
+            <li>USA Championships, Hayward Field, Eugene, OR USA: 7532 Decathlon</li>
+            <li>NCAA Division I Outdoor Championships, Mike A. Myers Stadium, Austin, TX USA: 7488 Decathlon</li>
+            </ul>
+
+            <p>For more detailed information, you can visit his <a href="https://www.worldathletics.org/athletes/united-states/ryan-talbot-14889963">Wikipedia page</a> or his <a href="https://www.worldathletics.org/athletes/united-states/ryan-talbot-14889963">World Athletics profile</a>.</p>
+        </div>
+    
+        <div id="image-section">
+            <img id="image" src="" alt="Image description">
+        </div>
+        <div id="text-section" class="side-pads">
+            <p id="text"></p>
+        </div>
+        <div class="side-pads">
+            <h1>Timeline of Ryan's career:</h1>
+            <p>(click for more details)</p>
+            <div id="yearDiv" style="display: flex; justify-content: space-between;">
+                <span id="startYear">2015</span>
+                <span id="currentYear"></span>
+            </div>
+        </div>
+        <div id="timeline" class="side-pads">
+            <!-- Timeline items will be added here by JavaScript -->
+        </div>
+    </div>
+    <div id="Contact" class="subpage">
+        <form id="contactForm">
+            <div id="nameRow">
+                <input class="contact-input short" type="text" id="firstName" placeholder="First Name" pattern="[^0-9]*" required>
+                <input class="contact-input short" type="text" id="lastName" placeholder="Last Name" pattern="[^0-9]*" required>
+            </div>
+            <input class="contact-input long" type="email" id="email" placeholder="Email" required>
+            <textarea class="contact-input long autoExpand" id="message" placeholder="Message" required></textarea>
+            <a href="#" class="contact-btn">Submit</a>
+        </form>
+    </div>
+    <div id="Decathlon" class="subpage">
+        <div class="container">
+            <h1>The Decathlon: A Test of Athletic Prowess</h1>
+            
+            <div id="origin">
+                <h2>Origin of the Decathlon</h2>
+                <p>The decathlon developed from the ancient pentathlon competitions held at the ancient Greek Olympics. Pentathlons involved five disciplines – long jump, discus throw, javelin throw, sprint, and a wrestling match. Introduced in Olympia during 708 BC, this competition was extremely popular for many centuries. The modern decathlon first appeared at the 1912 Games. The name "decathlon" was formed, in analogy to the word "pentathlon", from Greek δέκα (déka, meaning "ten") and ἄθλος (áthlos, or ἄθλον, áthlon, meaning "contest" or "prize").</p>
+            </div>
+    
+            <div id="history">
+                <h2>Recent History of the Decathlon</h2>
+                <p>The current official decathlon world record holder is Frenchman Kevin Mayer, who scored a total of 9,126 points at the 2018 Décastar in France.</p>
+            </div>
+    
+            <div id="description">
+                <h2>Description of the Decathlon Events</h2>
+                <p>In modern athletics, the ten events are:</p>
+                <ul>
+                    <li>100 metres: This is a sprint event. Athletes set up in starting blocks and sprint 100 meters to the finish line, while staying in their assigned lane.</li>
+                    <li>Long jump: This is a horizontal jump for distance. It's one of the oldest athletic contests, dating back to the ancient Greek Olympics.</li>
+                    <li>Shot put: Athletes throw a heavy spherical object as far as possible.</li>
+                    <li>High jump: This is a track and field event in which competitors must jump unaided over a horizontal bar placed at measured heights without dislodging it.</li>
+                    <li>400 metres: This is a sprint around the track in the stadium. One lap around the track covers the distance.</li>
+                    <li>110 metres hurdles: This is a sprint race in which each athlete must clear ten hurdles that are evenly spaced along a straight course.</li>
+                    <li>Discus throw: Athletes throw a heavy disc—called a discus—in an attempt to mark a farther distance than their competitors.</li>
+                    <li>Pole vault: This is a track and field event in which a person uses a long flexible pole as an aid to jump over a bar.</li>
+                    <li>Javelin throw: Athletes throw a spear-like object made of metal, fiberglass, or carbon fiber, with men's and women's competitions being held.</li>
+                    <li>1500 metres: This is a premier middle-distance track event in athletics. The distance has been contested at the Summer Olympics since 1896 for men and since 1972 for women.</li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <h1>Ryan's Personal Records</h1>
+                <p>These are the event scores from Ryan's current best decathlon performance:</p>
+            </div>
+            <div class="statistics-section">
+                <!-- The track-event divs will be created here by your JavaScript -->
+            </div>
+    
+            <div id="split">
+                <h2>Decathlon Events Split Over Two Days</h2>
+                <p>The vast majority of international and top-level men's decathlons are divided into a two-day competition. On the first day, athletes compete in a 100-meter dash, long jump, shot put, high jump, and 400-meter run. The second day includes 110-meter hurdles, discus throw, pole vault, javelin throw, and a 1,500-meter run.</p>
+            </div>
+        </div>
+        <div class = "row-container">
+            <div class="deacthlon-left-half" id="deacthlon-events-container">
+                <div class="deacthlon-header">
+                    Calculate your scores
+                </div>
+                <!-- JavaScript will populate this container with event rows -->
+            </div>
+            <!--<div class="deacthlon-right-half" id="deacthlon-visual-container">
+                <div class="deacthlon-header">
+                    Compare <span style="color: red;">your score</span> to <span style="color: green;">Ryan's best</span> and the <span style="color: blue;">world record</span>
+                </div>
+                 JavaScript will populate this container with lines 
+            </div>-->
+        </div>
+            <!-- Total score row -->
+        <div class="decathlon-total-score">
+            Total Score: <span id="decathlon-total-score">0</span>
+        </div>
+        </div>
+        <div id="Carnivore" class="subpage">
+                <div class="image-container">
+                    <img src = 'images/carnivore.jpg'>
+                </div>
+                <div class="side-pads">
+                    <p>Since his Junior year of college, Ryan has followed a strict carnivore diet consisting of almost exclusively meat and eggs.</p>
+
+                    <p>Here is one example of a daily diet for Ryan:
+                    <ul>
+                    <li>Breakfast: Six eggs and half a pound of ground beef.</li>
+                    <li>Lunch: Three half-pound burgers with a little bit of butter.</li>
+                    <li>Dinner: A steak and six eggs.</li>
+                    </ul>
+                    </p>
+
+                    <p>This means that he consumes roughly three pounds of meat and a dozen eggs daily. He sources his food from local farmers and sometimes purchases a whole cow at once, which is about 600 pounds of meat.</p>
+
+                    <p>Ryan's journey on the carnivore diet started when he felt he was not athletically performing to his standards. He decided to change his diet to help him reach a higher level of success. He believes that his diet has helped him recover faster from injuries and improve his performance. For instance, he won the Jim Click Shootout decathlon and the Big Ten Championship while following the carnivore diet.</p>
+
+                    <p>As you can see Ryan is exceptionally enthusiastic about his diet and believes in the results of it based on his personal success.</p>
+
+                    <p>Here are some quotes from Ryan regarding his diet:</p>
+                    <blockquote>
+                    <p>"I feel like I'm recovering faster from workouts."</p>
+                    <p>"I've noticed a significant improvement in my performance since I started this diet."</p>
+                    <p>"I believe this diet has helped me reach a higher level of success."</p>
+                    </blockquote>
+
+                </div>
+        </div>
+    <div id="Upcoming Events" class="subpage" style="justify-content: center;">
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%2333B679&ctz=America%2FNew_York&mode=AGENDA&showTz=1&showCalendars=0&showTabs=0&showPrint=0&showNav=0&showTitle=1&title=Ryan's%20Upcoming%20Events&src=Zm1nbzRxZzAwNWtkY3VpbTMyZjg1NGo2cWRqYTYxZjdAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043" style="border:solid 1px #777" width="90%" height="500px" frameborder="0" scrolling="no"></iframe>
+    </div>
+
+    <div id="footer">
+        <h3>Follow along with Ryan's journey</h3>
+        <div class="footer-links">
+            <a href="https://www.instagram.com/_ryan_talbot_/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png" alt="Instagram"></a>
+            <a href="https://msuspartans.com/sports/track-and-field/roster/ryan-talbot/13551"><img src = "images\msu_logo.jpg" alt="MSU"></a>
+            <a href="https://worldathletics.org/athletes/united-states/ryan-talbot-14970717"><img src = "images\World_Athletics_Logo.jpg" alt="World Athletics"></a>
+        </div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo"></feColorMatrix>
+                <feBlend in="SourceGraphic" in2="goo"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+
+    <script src="test.js"></script>
+</body>
+</html>

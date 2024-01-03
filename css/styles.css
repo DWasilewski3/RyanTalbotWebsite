@@ -1,5 +1,22 @@
+::-webkit-scrollbar {
+  width: 10px; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* make the tracking area transparent */
+}
+
+::-webkit-scrollbar-thumb {
+  background: white; /* color of the scroll thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* color of the scroll thumb when hovering */
+}
+
 body {
   overflow-x: hidden;
+  overflow-y: hidden;
   background: linear-gradient(to bottom, white, lightgrey);
   margin: 0;
 }
@@ -56,6 +73,11 @@ body {
   }
 }
 
+.side-pads{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .footer-links img {
   width: 75px;
   padding-inline: 10px;
@@ -73,12 +95,15 @@ body {
   font-weight: 700;
   font-size: 4vw;
   text-decoration: none;
-  padding: 0.9em 1.6em;
+  padding: 0.9em 0; 
   cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
   position: relative;
   z-index: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .c-button--gooey {
@@ -306,8 +331,10 @@ body {
 
   .carnivore-left-half {
       width: 50%;
-      background-image: url('images/carnivore.jpg');
+      /*background-image: url('images/carnivore.jpg');
       background-size: cover;
+      position: relative;
+      z-index: 1;*/
   }
   .carnivore-right-half {
       width: 50%;

@@ -16,7 +16,6 @@
 
 body {
   overflow-x: hidden;
-  overflow-y: hidden;
   background: linear-gradient(to bottom, white, lightgrey);
   margin: 0;
 }

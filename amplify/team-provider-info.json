@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ryantalbotwebsite-dev-192906-authRole",
+      "UnauthRoleArn": "arn:aws:iam::954167979349:role/amplify-ryantalbotwebsite-dev-192906-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::954167979349:role/amplify-ryantalbotwebsite-dev-192906-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-ryantalbotwebsite-dev-192906-deployment",
+      "UnauthRoleName": "amplify-ryantalbotwebsite-dev-192906-unauthRole",
+      "StackName": "amplify-ryantalbotwebsite-dev-192906",
+      "StackId": "arn:aws:cloudformation:us-east-1:954167979349:stack/amplify-ryantalbotwebsite-dev-192906/156898f0-bcab-11ee-a093-0a1c099c8803",
+      "AmplifyAppId": "d3smw08unx9zet"
+    },
+    "categories": {
+      "function": {
+        "ryantalbotwebsitef10fa8b9": {}
+      }
+    }
+  }
+}

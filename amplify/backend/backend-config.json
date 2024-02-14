@@ -1,15 +1,13 @@
 {
   "api": {
-    "RyanWebsiteContactForm": {
+    "ryantalbotwebsite": {
       "dependsOn": [],
       "output": {
         "authConfig": {
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "apiKeyConfig": {
-              "apiKeyExpirationDate": "2024-02-03T00:38:21.909Z",
-              "apiKeyExpirationDays": 7,
-              "description": ""
+              "apiKeyExpirationDays": 7
             },
             "authenticationType": "API_KEY"
           }
@@ -17,23 +15,6 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
-    }
-  },
-  "function": {
-    "ryantalbotwebsitef10fa8b9": {
-      "build": true,
-      "dependsOn": [
-        {
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ],
-          "category": "api",
-          "resourceName": "RyanWebsiteContactForm"
-        }
-      ],
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
     }
   }
 }

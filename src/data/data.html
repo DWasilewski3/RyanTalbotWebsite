@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Track Events Graphs</title>
+    <style>
+        .plot {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="module" src="../js/data-analytics.js"></script>
+</head>
+<body>
+    <select id="eventSelect">
+        <option value="0">100m Race</option>
+        <option value="1">Long Jump</option>
+        <option value="2">Shot Put</option>
+        <option value="3">High Jump</option>
+        <option value="4">400m Race</option>
+        <option value="5">110m Hurdles</option>
+        <option value="6">Discus Throw</option>
+        <option value="7">Pole Vault</option>
+        <option value="8">Javelin Throw</option>
+        <option value="9">1500m Race</option>
+    </select>
+    
+    <div id="plot"></div>    
+</body>
+</html>

@@ -102,14 +102,6 @@ var sessionStart = Date.now(); // Initialize sessionStart when the user loads th
                 }
             });
         }
-
-        function calculateTrackEventScore(score, event) {
-            return event.isTimed ? event.A * Math.pow((event.B - score), event.C) : event.A * Math.pow((score - event.B), event.C);
-        }
-    
-        function calculateTrackEventScore(score, event) {
-            return event.isTimed ? event.A * Math.pow((event.B - score), event.C) : event.A * Math.pow((score - event.B), event.C);
-        }
     
         // Function to update points and units for an event
         function updateEventPoints(index) {
@@ -143,7 +135,7 @@ var sessionStart = Date.now(); // Initialize sessionStart when the user loads th
             var numericPoints = parseFloat(points);
             totalScore += numericPoints;
             });
-            scoreText = document.getElementById('deacthlon-total-score');
+            var scoreText = document.getElementById('deacthlon-total-score');
             scoreText.textContent = totalScore;
             drawLines(scoreText, totalScore, 8321, 9126);
         }

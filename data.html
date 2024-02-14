@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Track Events Graphs</title>
+    <link rel="stylesheet" type="text/css" href="./src/css/styles.css">
+    <style>
+        #slider {
+            margin-top: 5%;
+            margin-left: 40%;
+        }
+        #sliderValue {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-left: 40%;
+        }
+        .plot {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="module" src="./src/js/data-analytics.js"></script>
+</head>
+<body>
+    <div class="header"><h1>SECRET DATA PAGE</h1></div>
+    <select id="eventSelect">
+        <option value="0">100m</option>
+        <option value="1">Long Jump</option>
+        <option value="2">Shot Put</option>
+        <option value="3">High Jump</option>
+        <option value="4">400m</option>
+        <option value="5">110m Hurdles</option>
+        <option value="6">Discus</option>
+        <option value="7">Pole Vault</option>
+        <option value="8">Javelin</option>
+        <option value="9">1500m</option>
+    </select>
+    
+    <div id="plot"></div>
+
+    <p id="score-text"></p>
+
+    <input type="range" min="0" max="10" value="0" id="slider">
+    <p id="sliderValue">(Slide to step)</p>    
+</body>
+</html>

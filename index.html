@@ -48,7 +48,7 @@
 
     <div id="About" class="subpage active">
         <div class="image-container">
-            <img src="./src/images\Team_USA_pics\flag_flex.jpg" alt="flag_flex.jpg">
+            <img src="./src/images/Team_USA_pics/flag_flex.jpg" alt="flag_flex.jpg">
         </div>
     
         <div id="timer">
@@ -66,7 +66,7 @@
 
             <p>Talbot's diet is unique. He follows a carnivore diet, consuming only animal products. For daily eating habits, he eats roughly three pounds of meat. He sources his food from local farmers and buys grass-fed ground beef in large quantities.</p>
 
-            <p>Talbot's journey in the carnivore diet originated during his junior year of college when he felt he was not performing to his standards. He decided the change in his diet will help him reach a higher level of success. After going carnivore he started feeling really good. His hamstring injuries subsided and his recovery was way faster than normal. He began to feel much healthier and was able to become stronger and faster, he still claims to be finding new benefits to the diet as he goes. He competed that year in the decathlon, and won the Jim Click Shootout as well as the Big Ten conference championship, all while not eating carbohydrates.</p>
+            <p>Talbot's journey in the carnivore diet originated during his junior year of college when he felt he was not performing to his standards. He decided the change in his diet will help him reach a higher level of success. After going carnivore he started feeling significantly better. His hamstring injuries subsided and his recovery was way faster than normal. He began to feel much healthier and was able to become stronger and faster, he still claims to be finding new benefits to the diet as he goes. He competed that year in the decathlon, and won the Jim Click Shootout as well as the Big Ten conference championship, all while not eating carbohydrates.</p>
 
             <p>According to his World Athletics profile, his current world ranking positions are as follows:</p>
             <ul>
@@ -95,7 +95,7 @@
             <ul>
             <li>Big Ten Ch., University of Minnesota T&F Stadium, Minneapolis, MN USA: 8064 Decathlon</li>
             <li>Big Ten Conference Outdoor Track & Field Championships, Billy Hayes T& F Complex, Bloomington, IN, USA: 7786 Decathlon</li>
-            <li>Pan American Games, Santiago de Chile CHI: 7742 Decathlon</li>
+            <li>Pan-American Games, Santiago de Chile CHI: 7742 Decathlon</li>
             <li>Jim Click Shootout & Multis, Univ. of Arizona Roy P. Drachman Stadium, Tucson, AZ USA: 7677 Decathlon</li>
             <li>USA Championships, Hayward Field, Eugene, OR USA: 7532 Decathlon</li>
             <li>NCAA Division I Outdoor Championships, Mike A. Myers Stadium, Austin, TX USA: 7488 Decathlon</li>
@@ -125,13 +125,17 @@
     <div id="Contact" class="subpage">
         <form id="contactForm">
             <div id="nameRow">
-                <input class="contact-input short" type="text" id="firstName" placeholder="First Name" pattern="[^0-9]*" required>
-                <input class="contact-input short" type="text" id="lastName" placeholder="Last Name" pattern="[^0-9]*" required>
+                <label for="firstName"></label><input class="contact-input short" type="text" id="firstName" placeholder="First Name" pattern="[^0-9]*" required>
+                <label for="lastName"></label><input class="contact-input short" type="text" id="lastName" placeholder="Last Name" pattern="[^0-9]*" required>
             </div>
-            <input class="contact-input long" type="email" id="email" placeholder="Email" required>
-            <textarea class="contact-input long autoExpand" id="message" placeholder="Message" required></textarea>
+            <label for="email"></label><input class="contact-input long" type="email" id="email" placeholder="Email" required>
+            <label for="message"></label><textarea class="contact-input long autoExpand" id="message" placeholder="Message" required></textarea>
             <a href="#" class="contact-btn">Submit</a>
         </form>
+
+        <a href="data.html">
+            <button>Go to Data Page</button>
+        </a>
     </div>
     <div id="Decathlon" class="subpage">
         <div class="container">
@@ -199,7 +203,7 @@
         </div>
         <div id="Carnivore" class="subpage">
                 <div class="image-container">
-                    <img src = './src/images/carnivore.jpg'>
+                    <img src = './src/images/carnivore.jpg' alt="Carnivore.jpg">
                 </div>
                 <div>
                     <p>Since his Junior year of college, Ryan has followed a strict carnivore diet consisting of almost exclusively meat and eggs.</p>
@@ -224,19 +228,19 @@
                 </div>
         </div>
     <div id="Upcoming Events" class="subpage" style="justify-content: center;">
-        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%2333B679&ctz=America%2FNew_York&mode=AGENDA&showTz=1&showCalendars=0&showTabs=0&showPrint=0&showNav=0&showTitle=1&title=Ryan's%20Upcoming%20Events&src=Zm1nbzRxZzAwNWtkY3VpbTMyZjg1NGo2cWRqYTYxZjdAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043" style="border:solid 1px #777" width="90%" height="500px" frameborder="0" scrolling="no"></iframe>
+        <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%2333B679&ctz=America%2FNew_York&mode=AGENDA&showTz=1&showCalendars=0&showTabs=0&showPrint=0&showNav=0&showTitle=1&title=Ryan's%20Upcoming%20Events&src=Zm1nbzRxZzAwNWtkY3VpbTMyZjg1NGo2cWRqYTYxZjdAaW1wb3J0LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%230B8043" style="border:solid 1px #777" width="90%" height="500px"></iframe>
     </div>
 
     <div id="footer">
         <h3>Follow along with Ryan's journey</h3>
         <div class="footer-links">
             <a href="https://www.instagram.com/_ryan_talbot_/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/1024px-Instagram_icon.png" alt="Instagram"></a>
-            <a href="https://msuspartans.com/sports/track-and-field/roster/ryan-talbot/13551"><img src = "./src/images\msu_logo.jpg" alt="MSU"></a>
-            <a href="https://worldathletics.org/athletes/united-states/ryan-talbot-14970717"><img src = "./src/images\World_Athletics_Logo.jpg" alt="World Athletics"></a>
+            <a href="https://msuspartans.com/sports/track-and-field/roster/ryan-talbot/13551"><img src = "./src/images/msu_logo.jpg" alt="MSU"></a>
+            <a href="https://worldathletics.org/athletes/united-states/ryan-talbot-14970717"><img src = "./src/images/World_Athletics_Logo.jpg" alt="World Athletics"></a>
         </div>
     </div>
 
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: block; height: 0; width: 0;">
         <defs>
             <filter id="goo">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
@@ -246,6 +250,6 @@
         </defs>
     </svg>
 
-    <script src="src/js/main.js"></script>
+    <script src="./src/js/main.js"></script>
 </body>
 </html>

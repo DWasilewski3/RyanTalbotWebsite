@@ -1,14 +1,25 @@
-var sessionStart = Date.now(); // Initialize sessionStart when the user loads the website
-
 //100m, long jump, shot put, high jump, 400m, 110m hurdles, discus, pole vault, javelin, 1500m
-        import { trackEvents } from './scores.js';
+const trackEvents = [
+    {title: '100m', A: 25.4347, B: 18, C: 1.81, isTimed: true, day1: true, highScore: 10.6, points: 952, worldRecord: 10.55, WRpoints: 963, step: 0.1},
+    {title: 'Long Jump', A: 0.14354, B: 220, C: 1.4, isTimed: false, day1: true, highScore: 7.06, points: 788, worldRecord: 7.80, WRpoints: 1010, step: 0.2},
+    {title: 'Shot Put', A: 51.39, B: 1.5, C: 1.05, isTimed: false, day1: true, highScore: 15.14, points: 798, worldRecord: 16.00, WRpoints: 851, step: 0.5},
+    {title: 'High Jump', A: 0.8465, B: 75, C: 1.42, isTimed: false, day1: true, highScore: 1.91, points: 723, worldRecord: 2.05, WRpoints: 850, step: 0.03},
+    {title: '400m', A: 1.53775, B: 82, C: 1.81, isTimed: true, day1: true, highScore: 47.52, points: 933, worldRecord: 48.42, WRpoints: 889, step: 0.5},
+    {title: '110m Hurdles', A: 5.74352, B: 28.5, C: 1.92, isTimed: true, day1: false, highScore: 14.74, points: 885, worldRecord: 13.75, WRpoints: 1007, step: 0.1},
+    {title: 'Discus', A: 12.91, B: 4, C: 1.1, isTimed: false, day1: false, highScore: 50.66, points: 884, worldRecord: 50.54, WRpoints: 882, step: 1},
+    {title: 'Pole Vault', A: 0.2797, B: 100, C: 1.35, isTimed: false, day1: false, highScore: 5.20, points: 972, worldRecord: 5.45, WRpoints: 1051, step: 0.1},
+    {title: 'Javelin', A: 10.14, B: 7, C: 1.08, isTimed: false, day1: false, highScore: 58.18, points: 710, worldRecord: 71.90, WRpoints: 918, step: 1},
+    {title: '1500m', A: 0.03768, B: 480, C: 1.85, isTimed: true, day1: false, highScore: 280.73, points: 676, worldRecord: 276.11, WRpoints: 705, step: 1},
+];
+
+        var sessionStart = Date.now(); // Initialize sessionStart when the user loads the website
 
         var events = [
-            {title: '11/23', description: 'Ryan placed 3rd at the Pan-American Games hosted in Chile. This was his first competition representing the United States of America', symbol: 'fas fa-medal', date: 2023, color: '#cd7f32', image: 'images/timeline/panam-tv.png'},
-            {title: '5/22', description: 'Ryan won the decathlon event at the Big Ten conference championship and set a new Michigan State University decathlon record of 8064', symbol: 'fas fa-medal', date: 2022, color: 'gold', image: 'images/timeline/big-ten-first-place.png'},
-            {title: '2/19', description: 'Ryan broke his own pole vault record for the last time in high school and won the indoor state meet with a height of 16ft 0in. This record still remains unbroken today', symbol: 'fas fa-medal', date: 2019, color: 'gold', image: 'images/timeline/hs-pr.png'},
-            {title: '12/18', description: 'Ryan committed to the Michigan State University track and field team', symbol: 'fas fa-graduation-cap', date: 2018, color: 'darkgreen', image: 'images/timeline/commitment.png'},
-            {title: '4/16', description: 'Ryan set the Forest Hils Central High School record for pole vault at 13ft 2in', symbol: 'fas fa-walking', date: 2016, color: 'green', image: 'images/timeline/hs-outdoor-pr.png'},
+            {title: '11/23', description: 'Ryan placed 3rd at the Pan-American Games hosted in Chile. This was his first competition representing the United States of America', symbol: 'fas fa-medal', date: 2023, color: '#cd7f32', image: 'src/images/timeline/panam-tv.png'},
+            {title: '5/22', description: 'Ryan won the decathlon event at the Big Ten conference championship and set a new Michigan State University decathlon record of 8064', symbol: 'fas fa-medal', date: 2022, color: 'gold', image: 'src/images/timeline/big-ten-first-place.png'},
+            {title: '2/19', description: 'Ryan broke his own pole vault record for the last time in high school and won the indoor state meet with a height of 16ft 0in. This record still remains unbroken today', symbol: 'fas fa-medal', date: 2019, color: 'gold', image: 'src/images/timeline/hs-pr.png'},
+            {title: '12/18', description: 'Ryan committed to the Michigan State University track and field team', symbol: 'fas fa-graduation-cap', date: 2018, color: 'darkgreen', image: 'src/images/timeline/commitment.png'},
+            {title: '4/16', description: 'Ryan set the Forest Hils Central High School record for pole vault at 13ft 2in', symbol: 'fas fa-walking', date: 2016, color: 'green', image: 'src/images/timeline/hs-outdoor-pr.png'},
         ];
         var currentYear = new Date().getFullYear();
 
@@ -102,6 +113,14 @@ var sessionStart = Date.now(); // Initialize sessionStart when the user loads th
                 }
             });
         }
+
+        function calculateTrackEventScore(score, event) {
+            return event.isTimed ? event.A * Math.pow((event.B - score), event.C) : event.A * Math.pow((score - event.B), event.C);
+        }
+    
+        function calculateTrackEventScore(score, event) {
+            return event.isTimed ? event.A * Math.pow((event.B - score), event.C) : event.A * Math.pow((score - event.B), event.C);
+        }
     
         // Function to update points and units for an event
         function updateEventPoints(index) {
@@ -135,7 +154,7 @@ var sessionStart = Date.now(); // Initialize sessionStart when the user loads th
             var numericPoints = parseFloat(points);
             totalScore += numericPoints;
             });
-            var scoreText = document.getElementById('deacthlon-total-score');
+            scoreText = document.getElementById('deacthlon-total-score');
             scoreText.textContent = totalScore;
             drawLines(scoreText, totalScore, 8321, 9126);
         }
@@ -265,12 +284,12 @@ var sessionStart = Date.now(); // Initialize sessionStart when the user loads th
 
         document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
-        
+
             var firstName = document.getElementById('firstName').value;
             var lastName = document.getElementById('lastName').value;
             var email = document.getElementById('email').value;
             var message = document.getElementById('message').value;
-        
+
             if (!firstName || !lastName || !email || !message) {
                 alert('Please fill out all fields.');
             } else if (typeof firstName !== 'string' || typeof lastName !== 'string' || typeof email !== 'string' || typeof message !== 'string') {
@@ -279,7 +298,6 @@ var sessionStart = Date.now(); // Initialize sessionStart when the user loads th
                 alert('Form submitted successfully!');
             }
         });
-
         function autoExpand(element) {
             element.style.height = 'inherit';
             var computed = window.getComputedStyle(element);

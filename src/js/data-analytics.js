@@ -6,7 +6,7 @@ var trackEvents = [
     {title: '400m', A: 1.53775, B: 82, C: 1.81, isTimed: true, day1: true, highScore: 47.52, points: 933, worldRecord: 48.42, WRpoints: 889, step: 0.5},
     {title: '110m Hurdles', A: 5.74352, B: 28.5, C: 1.92, isTimed: true, day1: false, highScore: 14.74, points: 885, worldRecord: 13.75, WRpoints: 1007, step: 0.1},
     {title: 'Discus', A: 12.91, B: 4, C: 1.1, isTimed: false, day1: false, highScore: 50.66, points: 884, worldRecord: 50.54, WRpoints: 882, step: 1},
-    {title: 'Pole Vault', A: 0.2797, B: 100, C: 1.35, isTimed: false, day1: false, highScore: 5.20, points: 972, worldRecord: 5.45, WRpoints: 1051, step: 0.1},
+    {title: 'Pole Vault', A: 0.2797, B: 100, C: 1.35, isTimed: false, day1: false, highScore: 520, points: 972, worldRecord: 5.45, WRpoints: 1051, step: 0.1},
     {title: 'Javelin', A: 10.14, B: 7, C: 1.08, isTimed: false, day1: false, highScore: 58.18, points: 710, worldRecord: 71.90, WRpoints: 918, step: 1},
     {title: '1500m', A: 0.03768, B: 480, C: 1.85, isTimed: true, day1: false, highScore: 280.73, points: 676, worldRecord: 276.11, WRpoints: 705, step: 1},
 ].map(event => {
@@ -15,7 +15,7 @@ var trackEvents = [
     } else if (event.isTimed) {
         event.text = event.highScore.toFixed(2) + " Seconds";
     } else {
-        if (event.title === "Long Jump" || event.title === "High Jump") event.text = (event.highScore / 100).toFixed(2) + " Meters";
+        if (event.title === "Long Jump" || event.title === "High Jump" || event.title === "Pole Vault") event.text = (event.highScore / 100).toFixed(2) + " Meters";
         else event.text = (event.highScore).toFixed(2) + " Meters";
     }
     return event;
@@ -24,14 +24,15 @@ var trackEvents = [
 var slider = document.getElementById("slider");
 var output = document.getElementById("sliderValue");
 var numSteps = 1;
-slider.oninput = function() {
+function handleSliderInput() {
     const eventSelect = document.getElementById('eventSelect');
     const i = eventSelect.value;
     const event = trackEvents[i];
-    output.innerHTML = "Step = " + Math.round(this.value * event.step * 10) / 10 + (event.isTimed ? " seconds" : " cm");
-    numSteps = this.value;
+    output.innerHTML = "Step = " + Math.round(slider.value * event.step * 10) / 10 + (event.isTimed ? " seconds" : " cm");
+    numSteps = slider.value;
     updatePlot(); 
 }
+slider.oninput = handleSliderInput;
 
 function updatePlot() {
     const eventSelect = document.getElementById('eventSelect');

@@ -1,15 +1,15 @@
 //Keep jumps and pole vault in cm fo rpoint calculations
 var trackEvents = [
-    {title: '100m', A: 25.4347, B: 18, C: 1.81, isTimed: true, day1: true, highScore: 10.6, points: 952, worldRecord: 10.55, WRpoints: 963, step: 0.1},
-    {title: 'Long Jump', A: 0.14354, B: 220, C: 1.4, isTimed: false, day1: true, highScore: 706, points: 788, worldRecord: 7.80, WRpoints: 1010, step: 0.2},
-    {title: 'Shot Put', A: 51.39, B: 1.5, C: 1.05, isTimed: false, day1: true, highScore: 15.14, points: 798, worldRecord: 16.00, WRpoints: 851, step: 0.5},
-    {title: 'High Jump', A: 0.8465, B: 75, C: 1.42, isTimed: false, day1: true, highScore: 191, points: 723, worldRecord: 2.05, WRpoints: 850, step: 0.03},
-    {title: '400m', A: 1.53775, B: 82, C: 1.81, isTimed: true, day1: true, highScore: 47.52, points: 933, worldRecord: 48.42, WRpoints: 889, step: 0.5},
-    {title: '110m Hurdles', A: 5.74352, B: 28.5, C: 1.92, isTimed: true, day1: false, highScore: 14.74, points: 885, worldRecord: 13.75, WRpoints: 1007, step: 0.1},
-    {title: 'Discus', A: 12.91, B: 4, C: 1.1, isTimed: false, day1: false, highScore: 50.66, points: 884, worldRecord: 50.54, WRpoints: 882, step: 1},
-    {title: 'Pole Vault', A: 0.2797, B: 100, C: 1.35, isTimed: false, day1: false, highScore: 520, points: 972, worldRecord: 5.45, WRpoints: 1051, step: 0.1},
-    {title: 'Javelin', A: 10.14, B: 7, C: 1.08, isTimed: false, day1: false, highScore: 58.18, points: 710, worldRecord: 71.90, WRpoints: 918, step: 1},
-    {title: '1500m', A: 0.03768, B: 480, C: 1.85, isTimed: true, day1: false, highScore: 280.73, points: 676, worldRecord: 276.11, WRpoints: 705, step: 1},
+    {title: '100m', A: 25.4347, B: 18, C: 1.81, isTimed: true, day1: true, highScore: 10.6, points: 952, worldRecord: 9.58, WRpoints: 1202, step: 0.1},
+    {title: 'Long Jump', A: 0.14354, B: 220, C: 1.4, isTimed: false, day1: true, highScore: 706, points: 788, worldRecord: 8.95, WRpoints: 1312, step: 0.2},
+    {title: 'Shot Put', A: 51.39, B: 1.5, C: 1.05, isTimed: false, day1: true, highScore: 15.14, points: 798, worldRecord: 23.56, WRpoints: 1323, step: 0.5},
+    {title: 'High Jump', A: 0.8465, B: 75, C: 1.42, isTimed: false, day1: true, highScore: 191, points: 723, worldRecord: 2.45, WRpoints: 1244, step: 0.03},
+    {title: '400m', A: 1.53775, B: 82, C: 1.81, isTimed: true, day1: true, highScore: 47.52, points: 933, worldRecord: 43.03, WRpoints: 1164, step: 0.5},
+    {title: '110m Hurdles', A: 5.74352, B: 28.5, C: 1.92, isTimed: true, day1: false, highScore: 14.74, points: 885, worldRecord: 12.80, WRpoints: 1135, step: 0.1},
+    {title: 'Discus', A: 12.91, B: 4, C: 1.1, isTimed: false, day1: false, highScore: 50.90, points: 884, worldRecord: 74.08, WRpoints: 1383, step: 1},
+    {title: 'Pole Vault', A: 0.2797, B: 100, C: 1.35, isTimed: false, day1: false, highScore: 520, points: 972, worldRecord: 6.23, WRpoints: 1308, step: 0.1},
+    {title: 'Javelin', A: 10.14, B: 7, C: 1.08, isTimed: false, day1: false, highScore: 58.18, points: 710, worldRecord: 98.48, WRpoints: 1331, step: 1},
+    {title: '1500m', A: 0.03768, B: 480, C: 1.85, isTimed: true, day1: false, highScore: 273.51, points: 676, worldRecord: 206.00, WRpoints: 1218, step: 1},
 ].map(event => {
     if (event.title === '1500m') {
         event.text = Math.floor(event.highScore / 60) + ":" + Math.floor(event.highScore % 60) + ":" + Math.floor((event.highScore % 1) * 100) + " Minutes";
@@ -133,11 +133,20 @@ var trackEvents = [
         function calculateTrackEventScore(score, event) {
             return event.isTimed ? event.A * Math.pow((event.B - score), event.C) : event.A * Math.pow((score - event.B), event.C);
         }
+
+        function timeToSeconds(timeString) {
+            var parts = timeString.split(/[:.]/);
+            var minutes = parseInt(parts[0], 10);
+            var seconds = parseInt(parts[1], 10);
+            var milliseconds = parts[2] ? parseInt(parts[2], 10) : 0;
+        
+            return minutes * 60 + seconds + milliseconds / 1000;
+        }
     
         // Function to update points and units for an event
         function updateEventPoints(index) {
             var scoreInput = document.getElementById('deacthlon-score-' + index);
-            var score = parseFloat(scoreInput.value);
+            var score = index ===  9 ? timeToSeconds(scoreInput.value) : parseFloat(scoreInput.value);
             var event = trackEvents[index];
             updateUnits(index, score); // Update units based on score
             if(score < 100 && (index === 1 || index === 3 || index === 7)) score *= 100; //convert m to cm for jumps
@@ -173,19 +182,29 @@ var trackEvents = [
     
         // Function to create event rows
         function createEventRows() {
-        var eventsContainer = document.getElementById('deacthlon-events-container');
-        trackEvents.forEach(function(event, index) {
-        var eventRow = document.createElement('div');
-        eventRow.classList.add('deacthlon-event-row');
-        var initialUnitsText = event.isTimed ? 'Seconds' : 'm or cm'; // Set initial units text based on isTimed
-        eventRow.innerHTML = `
-        <div class="deacthlon-event-title">${event.title}</div>
-        <input type="text" class="deacthlon-input" id="deacthlon-score-${index}" oninput=updateEventPoints(${index}); pattern="\\d+(\\.\\d*)?" placeholder="Score">
-        <div class="deacthlon-event-units" id="deacthlon-units-${index}">${initialUnitsText}</div>
-        <div class="deacthlon-event-points" id="deacthlon-points-${index}">${event.points}</div>
-        `;
-        eventsContainer.appendChild(eventRow);
-        });
+            var eventsContainer = document.getElementById('deacthlon-events-container');
+            trackEvents.forEach(function(event, index) {
+            var eventRow = document.createElement('div');
+            eventRow.classList.add('deacthlon-event-row');
+            if (event.title === '1500m'){
+                var initialUnitsText = 'Min:Sec';
+                eventRow.innerHTML = `
+                <div class="deacthlon-event-title">${event.title}</div>
+                <input type="text" class="deacthlon-input" id="deacthlon-score-${index}" oninput=updateEventPoints(${index}); pattern = "\\d+(:\\d{2}(:\\d{2}|\\.\\d{2})?|\\.\\d{2}(\\.\\d{2})?)?" placeholder="Score">
+                <div class="deacthlon-event-units" id="deacthlon-units-${index}">${initialUnitsText}</div>
+                <div class="deacthlon-event-points" id="deacthlon-points-${index}">${event.points}</div>
+                `;
+            } else {
+                var initialUnitsText = event.isTimed ? 'Seconds' : 'm or cm'; // Set initial units text based on isTimed
+                eventRow.innerHTML = `
+                <div class="deacthlon-event-title">${event.title}</div>
+                <input type="text" class="deacthlon-input" id="deacthlon-score-${index}" oninput=updateEventPoints(${index}); pattern="\\d+(\\.\\d*)?" placeholder="Score">
+                <div class="deacthlon-event-units" id="deacthlon-units-${index}">${initialUnitsText}</div>
+                <div class="deacthlon-event-points" id="deacthlon-points-${index}">${event.points}</div>
+                `;
+            }
+            eventsContainer.appendChild(eventRow);
+            });
         }
 
         function setSameHeight() {

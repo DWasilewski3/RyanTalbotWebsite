@@ -1,17 +1,12 @@
+/* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {
-  width: 10px; /* width of the entire scrollbar */
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: transparent; /* make the tracking area transparent */
-}
-
-::-webkit-scrollbar-thumb {
-  background: white; /* color of the scroll thumb */
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555; /* color of the scroll thumb when hovering */
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none;  /* For Internet Explorer and Edge */
 }
 
 body {
@@ -476,4 +471,10 @@ margin-bottom: 20px;
 .highScore-animate {
 font-size: 24px;
 font-weight: bold;
+}
+
+.Instagram-profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

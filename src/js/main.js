@@ -31,7 +31,7 @@ var trackEvents = [
             {title: '2/19', description: 'Ryan broke his own pole vault record for the last time in high school and won the indoor state meet with a height of 16ft 0in. This record still remains unbroken today', symbol: 'fas fa-medal', date: 2019, color: 'gold', image: 'src/images/timeline/hs-pr.png'},
             {title: '12/18', description: 'Ryan committed to the Michigan State University track and field team', symbol: 'fas fa-graduation-cap', date: 2018, color: 'darkgreen', image: 'src/images/timeline/commitment.png'},
             {title: '4/16', description: 'Ryan set the Forest Hils Central High School record for pole vault at 13ft 2in', symbol: 'fas fa-walking', date: 2016, color: 'green', image: 'src/images/timeline/hs-outdoor-pr.png'},
-            {title: '5/24', description: 'Ryan won his second gold medal in the outdoor decathlon as a capstone to the 2024 regular season', symbol: 'fas fa-medal', date: 2024, color: 'gold', image: 'src/images/timeline/B1G-High-Jump.png'},
+            {title: '5/24', description: 'Ryan won his second gold medal in the outdoor decathlon as a capstone to the 2024 regular season. Two weeks later he placed 8th at the US Olympic Trials', symbol: 'fas fa-medal', date: 2024, color: 'gold', image: 'src/images/timeline/B1G-High-Jump.png'},
         ];
         var currentYear = new Date().getFullYear();
 

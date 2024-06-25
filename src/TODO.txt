@@ -1,0 +1,8 @@
+Add historical data graphs
+Import top events using https://github.com/nimarion/worldathletics/tree/main/src 
+Add new calendar 
+fix right side spacing
+Add more definition to footer
+Add attributions for worldathletics pull repo
+Add contact form
+Embed IG content

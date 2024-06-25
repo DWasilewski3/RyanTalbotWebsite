@@ -92,12 +92,13 @@ function updatePlot() {
     };
 
     Plotly.newPlot('plot', data, layout);
-    document.getElementById('score-text').innerText = "High Score Points: " + highScorePoint.y + "\nHigh Score + Step Points: " + stepScorePoint.y + "\nImprovement: " + (stepScorePoint.y - highScorePoint.y) + " = " + (Math.round((stepScorePoint.y - highScorePoint.y)/highScorePoint.y * 10000)/100) + "%";
+    var scoreFormula = String(event.A +" * ( " + (event.isTimed ? String(event.B) + " - time(seconds)" : "Distance(cm) - " + String(event.B)) + ")^" + String(event.C));
+    document.getElementById('score-text').innerText = "High Score Points: " + highScorePoint.y + "\nHigh Score + Step Points: " + stepScorePoint.y + "\nImprovement: " + (stepScorePoint.y - highScorePoint.y) + " = " + (Math.round((stepScorePoint.y - highScorePoint.y)/highScorePoint.y * 10000)/100) + "%" + "\nScore formula for " + event.title + ": " + scoreFormula;
 }
 
 window.onload = function() {
     const eventSelect = document.getElementById('eventSelect');
     eventSelect.addEventListener('change', updatePlot); 
-
+    handleSliderInput();
     eventSelect.dispatchEvent(new Event('change'));
 }

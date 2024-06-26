@@ -4,4 +4,4 @@ Add new calendar
 Add more definition to footer
 Add attributions for worldathletics pull repo
 Add contact form
-Embed IG content
+Format IG content

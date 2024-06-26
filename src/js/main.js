@@ -34,7 +34,7 @@ var trackEvents = [
             {title: '5/24', description: 'Ryan won his second gold medal in the outdoor decathlon as a capstone to the 2024 regular season. Two weeks later he placed 8th at the US Olympic Trials', symbol: 'fas fa-medal', date: 2024, color: 'gold', image: 'src/images/timeline/B1G-High-Jump.png'},
         ];
         var currentYear = new Date().getFullYear();
-
+        var currentTimelineIndex = 0;
 
         function updateContent(image, description) {
             document.getElementById('image').src = image;
@@ -48,6 +48,11 @@ var trackEvents = [
             eventElement.style.right = ((currentYear - event.date) / (currentYear - 2015) * 100) + '%';
             eventElement.innerHTML = '<i class="' + event.symbol + '" style="color: ' + event.color + '; font-size: 30px; cursor: pointer;" onclick="updateContent(\'' + event.image + '\', \'' + event.description + '\')"></i><p>' + event.title + '</p>';
             timeline.appendChild(eventElement);
+        }
+
+        function autoUpdateTimeline() {
+            updateContent(events[currentTimelineIndex].image, events[currentTimelineIndex].description);
+            currentTimelineIndex = (currentTimelineIndex + 1) % events.length; // Move to the next event, loop back to the first event after the last one
         }
 
         function showSubpage(pageId) {
@@ -388,7 +393,8 @@ var trackEvents = [
             });
           });
           
-
+        autoUpdateTimeline();
+        setInterval(autoUpdateTimeline, 10000);
         events.forEach(addEvent);
         timedEvents.forEach(addTrackEvent);
         setInterval(updateTimerAndTrackEvents, 1000);

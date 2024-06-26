@@ -80,7 +80,13 @@ p, h1, h2, h3, h4, h5, h6 {
   width: 75px;
   padding-inline: 10px;
   border-radius: 33%;
+  transition: transform 0.3s; /* Smooth transformation */
 }
+
+.footer-links img:hover {
+  transform: scale(1.1); /* Enlarge the icons when hovered */
+}
+
 
 .subpage {
   display: none;

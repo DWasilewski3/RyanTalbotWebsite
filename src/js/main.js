@@ -131,14 +131,6 @@ var trackEvents = [
             });
         }
 
-        function calculateTrackEventScore(score, event) {
-            return event.isTimed ? event.A * Math.pow((event.B - score), event.C) : event.A * Math.pow((score - event.B), event.C);
-        }
-    
-        function calculateTrackEventScore(score, event) {
-            return event.isTimed ? event.A * Math.pow((event.B - score), event.C) : event.A * Math.pow((score - event.B), event.C);
-        }
-
         function timeToSeconds(timeString) {
             var parts = timeString.split(/[:.]/);
             var minutes = parseInt(parts[0], 10);
@@ -220,9 +212,8 @@ var trackEvents = [
         }
         
         function getUserScore(eventIndex) {
-
-        var scoreInput = document.getElementById('deacthlon-score-' + index);
-        return parseFloat(scoreInput.value); 
+            var scoreInput = document.getElementById('deacthlon-score-' + eventIndex);
+            return parseFloat(scoreInput.value); 
         }
 
         function drawLines(inputElement, value1, value2, value3) {
@@ -318,22 +309,6 @@ var trackEvents = [
         visualization.appendChild(lineContainer);
         }
 
-        document.getElementById('contactForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            var firstName = document.getElementById('firstName').value;
-            var lastName = document.getElementById('lastName').value;
-            var email = document.getElementById('email').value;
-            var message = document.getElementById('message').value;
-
-            if (!firstName || !lastName || !email || !message) {
-                alert('Please fill out all fields.');
-            } else if (typeof firstName !== 'string' || typeof lastName !== 'string' || typeof email !== 'string' || typeof message !== 'string') {
-                alert('All fields must be strings.');
-            } else {
-                alert('Form submitted successfully!');
-            }
-        });
         function autoExpand(element) {
             element.style.height = 'inherit';
             var computed = window.getComputedStyle(element);
@@ -345,8 +320,6 @@ var trackEvents = [
 
             element.style.height = height + 'px';
         };
-        // Apply the autoExpand function to the textarea
-        document.getElementById('message').addEventListener('input', function() {autoExpand(this);});
 
         function animateHighScores(highScore, element) {
             let startTimestamp = null;

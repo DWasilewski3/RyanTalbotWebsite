@@ -96,7 +96,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 .c-button {
   color: #000;
-  font-weight: 700;
+  font-weight: 750;
   font-size: 4vw;
   text-decoration: none;
   padding: 0.9em 0; 
@@ -119,6 +119,7 @@ p, h1, h2, h3, h4, h5, h6 {
   position: relative;
   transition: all 700ms ease;
 }
+
 .selected {
   background-color: #006400;
   color: white;

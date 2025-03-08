@@ -1,11 +1,10 @@
 Main:
     Shorten tab text size when width decreases
-    Verify JS works when connected to internet (sucks on plane)
 
 Data page:
-    Add historical data graphs
     Import top events using https://github.com/nimarion/worldathletics/tree/main/src 
     Add attributions for worldathletics pull repo
+    Add historical data graphs
     Fix score graphs
 
 Events page:

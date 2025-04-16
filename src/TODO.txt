@@ -15,3 +15,8 @@ Coaching page:
     Add new events calendar
     Add images and quotes
 
+Logan:
+    Visual improvements
+    Better instagram implementation
+    Create coaching page
+    Add logo -- ask david
